@@ -4,6 +4,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using System.Diagnostics;
 using TMPro;
+using UnityEditor;
 
 public class openApplication : MonoBehaviour
 {
@@ -34,4 +35,14 @@ public class openApplication : MonoBehaviour
 
         outputText.text = result;
     }
+
+    // public static void Openen()
+    // {
+    //     string pathToExe = Application.persistantDataPath; //Replace(@"/", @"\") + "\\Plugins\\";
+    //     string command = pathToExe + "D:\installations\Arduino IDE";
+    //     Process process = Process.Start("Arduino IDE.exe", command);
+    //     process.WaitForExit();
+    //     process.Close();
+    // }
+
 }
