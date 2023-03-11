@@ -1,12 +1,7 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class DrawScript : MonoBehaviour
 {
-
-    public Vector3 screenPosition;
-    public Vector3 worldPosition;
 
     private Mesh mesh;
     private Vector3 lastMousePosition;
@@ -27,10 +22,10 @@ public class DrawScript : MonoBehaviour
             Vector2[] uv = new Vector2[4];
             int[] triangles = new int[6];
 
-            vertices[0] = new Vector3(-1, +1);
-            vertices[1] = new Vector3(-1, -1);
-            vertices[2] = new Vector3(+1, -1);
-            vertices[3] = new Vector3(+1, +1);
+            vertices[0] = GetMousePosition.GetMouseWorldPosition();
+            vertices[1] = GetMousePosition.GetMouseWorldPosition();
+            vertices[2] = GetMousePosition.GetMouseWorldPosition();
+            vertices[3] = GetMousePosition.GetMouseWorldPosition();
 
             uv[0] = Vector2.zero;
             uv[1] = Vector2.zero;
@@ -52,16 +47,7 @@ public class DrawScript : MonoBehaviour
 
             GetComponent<MeshFilter>().mesh = mesh;
 
-            //mouse position
-            screenPosition = Input.mousePosition; //replace with mouse.current.position.readvalue?
-            screenPosition.z = Camera.main.nearClipPlane + 1;
-
-            worldPosition = Camera.main.ScreenToWorldPoint(screenPosition);
-
-
-            transform.position = worldPosition;
-
-            lastMousePosition = transform.position;
+            lastMousePosition = GetMousePosition.GetMouseWorldPosition();
         }
 
         if (Input.GetMouseButton(0))
@@ -82,11 +68,11 @@ public class DrawScript : MonoBehaviour
             int vIndex2 = vIndex + 2;
             int vIndex3 = vIndex + 3;
 
-            Vector3 mouseForwardVector = (Camera.main.ScreenToWorldPoint(screenPosition) - lastMousePosition).normalized;
+            Vector3 mouseForwardVector = (GetMousePosition.GetMouseWorldPosition() - lastMousePosition).normalized;
             Vector3 normal2D = new Vector3(0, 0, -1f);
             float lineThickness = 1f;
-            Vector3 newvertexUp = Camera.main.ScreenToWorldPoint(screenPosition) + Vector3.Cross(mouseForwardVector, normal2D) * lineThickness;
-            Vector3 newvertexDown = Camera.main.ScreenToWorldPoint(screenPosition) + Vector3.Cross(mouseForwardVector, normal2D * -1f) * lineThickness;
+            Vector3 newvertexUp = GetMousePosition.GetMouseWorldPosition() + Vector3.Cross(mouseForwardVector, normal2D) * lineThickness;
+            Vector3 newvertexDown = GetMousePosition.GetMouseWorldPosition() + Vector3.Cross(mouseForwardVector, normal2D * -1f) * lineThickness;
 
             vertices[vIndex2] = newvertexUp;
             vertices[vIndex3] = newvertexDown;
@@ -108,8 +94,9 @@ public class DrawScript : MonoBehaviour
             mesh.uv = uv;
             mesh.triangles = triangles;
 
-            lastMousePosition = Camera.main.ScreenToWorldPoint(screenPosition);
+            lastMousePosition = GetMousePosition.GetMouseWorldPosition();
         }
+
     }
 }
 //tutorial by Code Monkey
