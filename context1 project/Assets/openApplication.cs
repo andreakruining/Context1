@@ -8,33 +8,57 @@ using UnityEditor;
 
 public class openApplication : MonoBehaviour
 {
-    [SerializeField] private TextMeshProUGUI outputText;
     [SerializeField] private Button startButton;
 
     private void Start()
     {
-        startButton.onClick.AddListener(CreateProcess);
+        startButton.onClick.AddListener(StartOtherProgram);
     }
 
-    private void CreateProcess()
+    void StartOtherProgram()
     {
-        var processInfo = new ProcessStartInfo
-        {
-            WorkingDirectory = Application.persistentDataPath,
-            WindowStyle = ProcessWindowStyle.Normal,
-            FileName = "explorer.exe",
-            UseShellExecute = false,
-            CreateNoWindow = true,
-            RedirectStandardOutput = true,
-        };
-
-        var process = Process.Start(processInfo);
-        var result = process.StandardOutput.ReadToEnd();
-
-        process.WaitForExit();
-
-        outputText.text = result;
+        Process process = new Process();
+        process.StartInfo.FileName = "D:\\installations\\Arduino IDE\\Arduino IDE.exe"; // replace with the path to your program
+        process.StartInfo.UseShellExecute = true;
+        process.Start();
     }
+
+
+    //D:\\installations\\Krita (x64)\\bin\\krita.exe
+
+
+
+    // [SerializeField] private TextMeshProUGUI outputText;
+    // [SerializeField] private Button startButton;
+
+    // private void Start()
+    // {
+    //     startButton.onClick.AddListener(CreateProcess);
+    // }
+
+    // private void CreateProcess()
+    // {
+    //     var processInfo = new ProcessStartInfo
+    //     {
+    //         WorkingDirectory = Application.persistentDataPath,
+    //         WindowStyle = ProcessWindowStyle.Normal,
+    //         FileName = "explorer.exe",
+    //         UseShellExecute = false,
+    //         CreateNoWindow = true,
+    //         RedirectStandardOutput = true,
+    //     };
+
+    //     var process = Process.Start(processInfo);
+    //     var result = process.StandardOutput.ReadToEnd();
+
+    //     process.WaitForExit();
+
+    //     outputText.text = result;
+    // }
+
+
+
+
 
     // public static void Openen()
     // {
