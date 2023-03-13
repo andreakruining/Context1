@@ -18,7 +18,7 @@ public class openApplication : MonoBehaviour
     void StartOtherProgram()
     {
         Process process = new Process();
-        process.StartInfo.FileName = "D:\\installations\\Arduino IDE\\Arduino IDE.exe"; // replace with the path to your program
+        process.StartInfo.FileName = "C:\\Users\\ninab\\AppData\\Local\\Programs\\Arduino IDE\\Arduino IDE.exe"; // replace with the path to your program
         process.StartInfo.UseShellExecute = true;
         process.Start();
     }
