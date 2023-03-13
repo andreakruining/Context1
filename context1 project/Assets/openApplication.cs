@@ -25,7 +25,7 @@ public class openApplication : MonoBehaviour
 
 
     //D:\\installations\\Krita (x64)\\bin\\krita.exe
-
+    //D:\\installations\\Arduino IDE\\Arduino IDE.exe
 
 
     // [SerializeField] private TextMeshProUGUI outputText;
